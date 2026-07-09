@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafb; /* Brand Background */
+  --foreground: #1f2937; /* Brand Dark Text */
+  --primary-accent: #005f73; /* Brand Primary Teal */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --animate-slide-up: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.2s ease-out forwards;
+
+  /* Custom brand color definitions */
+  --color-brand-primary: #005F73;
+  --color-brand-accent: #0A6F85;
+  --color-brand-neutral: #8D8886;
+  --color-brand-bg: #F8FAFB;
+  --color-brand-dark: #1F2937;
+
+  /* Re-mapping the indigo color family to match the brand teal colors */
+  --color-indigo-50: #e0f2f1;  /* light teal tint */
+  --color-indigo-100: #b2dfdb; /* soft teal highlight */
+  --color-indigo-200: #80cbc4; /* pale teal accent */
+  --color-indigo-300: #4db6ac; /* medium teal */
+  --color-indigo-400: #26a69a; /* bright teal */
+  --color-indigo-500: #0a6f85; /* Brand Secondary Accent */
+  --color-indigo-600: #005f73; /* Brand Primary Teal */
+  --color-indigo-700: #004d40; /* Dark teal hover */
+  --color-indigo-800: #00332c; /* Deep teal active */
+  --color-indigo-900: #001a14; /* Shadow accent */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 111, 133, 0.2); /* Soft brand secondary accent */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 111, 133, 0.4);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+}
+
+/* Glassmorphism details */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(141, 136, 134, 0.08);
+}
+
+.premium-card {
+  background: #ffffff;
+  border: 1px solid rgba(141, 136, 134, 0.12); /* 12% opacity neutral gray */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover {
+  box-shadow: 0 12px 24px -10px rgba(0, 95, 115, 0.04), 0 4px 12px -5px rgba(0, 95, 115, 0.02);
+  border-color: rgba(0, 95, 115, 0.15); /* Primary brand teal hover accent */
 }
